@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./home.css" />
+    <link rel="stylesheet" href="./signup.css" />
+  </head>
+  <body>
+    <nav>
+      <span class="js">JS_RIDERS</span>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <button class="signup"><a href="/signup">Sign up</a></button>
+    </nav>
+    <h1><center>FILL THE FORM FOR REGISTRATION</center></h1>
+    <div class="reg">
+      <form id="login-form">
+        <table cellspacing="10px">
+          <tr>
+            <td>F-Name</td>
+            <td><input type="text" name="username" /></td>
+          </tr>
+          <tr>
+            <td>L-Name</td>
+            <td><input type="text" name="lname" /></td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td><input type="email" name="email" /></td>
+          </tr>
+          <tr>
+            <td>Mobile no</td>
+            <td><input type="number" name="mobile" /></td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input type="password" name="password" /></td>
+          </tr>
+          <tr>
+            <td>Gender</td>
+            <td>
+              <input type="radio" name="Gender" value="male" />Male
+              <input type="radio" name="Gender" value="female" />Female
+              <input type="radio" name="Gender" value="Others" />Others
+            </td>
+          </tr>
+          <tr>
+            <td>DOB</td>
+            <td><input type="date" name="dob" /></td>
+          </tr>
+          <tr>
+            <td colspan="2"><input type="submit" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <script>
+      let loginForm = document.getElementById("login-form");
+      let data = {};
+      loginForm.addEventListener("input", (event) => {
+        let name = event.target.name;
+        let value = event.target.value;
+        data[name] = value;
+      });
+      loginForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (data.username && data.password) {
+          fetch("/data", {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(data),
+          })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((err) => console.log(err));
+           e.target.value = "";
+        } else {
+          alert("provide all fields");
+        }
+      });
+    </script>
+  </body>
+</html>

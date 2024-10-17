@@ -1,0 +1,26 @@
+.reg{
+    height: 70vh;
+    width:50vw;
+    margin: auto;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+}
+table{
+    margin: auto;
+    padding: 50px;
+}
+[type="text"],[type="password"],[type="email"],[type="number"],[type="date"]{
+    height: 30px;
+    width:200px;
+    border-radius: 5px;
+}
+[type="submit"]{
+    height: 30px;
+    width:100px;
+    border-radius: 5px;
+    border: none;
+    background-color: brown;
+    color:white;
+    font-size: 18px;
+}

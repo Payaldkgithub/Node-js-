@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/home.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="./Home.html">Home</a>
+      <a href="./pages/About.html">About</a>
+      <a href="./pages/Login.html">Login Page</a>
+    </nav>
+    <h1>Home page</h1>
+
+    <button id="get">Get data</button>
+    <button id="post">Post data</button>
+
+    <script>
+      let getBtn = document.getElementById("get");
+      let postBtn = document.getElementById("post");
+
+      getBtn.addEventListener("click", () => {
+        fetch("/data")
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      });
+      postBtn.addEventListener("click", () => {
+        let user = {
+          name: "abc",
+          address: "blr",
+        };
+        fetch("/postData", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.log(error));
+      });
+    </script>
+  </body>
+</html>
